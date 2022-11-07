@@ -1,0 +1,104 @@
+<div>
+    <fieldset style="margin: 10px;">
+        <legend>Datos del Paciente</legend>
+        <form (ngSubmit)= "onSubmit()" #pacienteForm = "ngForm" class="example-container">
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Tipo Documento</mat-label>
+                    <mat-select required="true" [(ngModel)] = "paciente.id_tipo_docide" name="id_tipo_docide" #id_tipo_docide="ngModel" [(value)]="id_tipo_documento_identidad">
+                        <mat-option *ngFor="let op of tipoDocs" [value]="op.id_tipo_documento_identidad">{{op.descripcion_tipo_documento_identidad}}</mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="id_tipo_docide.hasError('required')">
+                        Tipo Documento es requerido
+                      </mat-error>
+                </mat-form-field>
+
+                <mat-form-field hintLabel="Max 8 characters" appearance="fill">
+                    <mat-label>Num. Documento</mat-label>
+                    <input matInput #filter maxlength="8" id="no_docide" placeholder="" required [(ngModel)] = "paciente.no_docide" name="no_docide" #no_docide = "ngModel">
+                    <mat-hint align="end">{{filter.value?.length || 0}}/8</mat-hint>
+                    <mat-error class="alert alert-danger" *ngIf= "no_docide.invalid && (no_docide.dirty || no_docide.touched)">
+                        <div *ngIf = "no_docide.errors?.['required']">
+                          Digite el número de documento
+                        </div>
+                        <div *ngIf = "no_docide.errors?.['maxlength']">
+                          El número de documento tiene que tener como maximo 8 caracteres
+                        </div>
+                      </mat-error>                    
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Nombres</mat-label>
+                    <input matInput #filter placeholder="" required="true" [(ngModel)] = "paciente.no_nombres" name="no_nombres">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Apellido Paterno</mat-label>
+                    <input matInput #filter placeholder="" required="true" [(ngModel)] = "paciente.no_apepat" name="no_apepat">
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Apellido Materno</mat-label>
+                    <input matInput #filter placeholder="" required="true" [(ngModel)] = "paciente.no_apemat" name="no_apemat">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Sexo</mat-label>
+                    <mat-select required="true" [(ngModel)] = "paciente.id_sexo" name="id_sexo">
+                        <mat-option *ngFor="let op of sexos" [value]="op.id_sexo">{{op.descripcion_sexo}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Fecha Nacimiento</mat-label>
+                    <input matInput [matDatepicker]="picker" required="true" [(ngModel)]="edad" (change)="onChangeEvent($event)" [(ngModel)] = "paciente.fe_nacimiento" name="fe_nacimiento">
+                    <mat-hint>MM/DD/YYYY</mat-hint>
+                    <mat-datepicker-toggle matSuffix [for]="picker" (change)="onChangeEvent($event)"></mat-datepicker-toggle>
+                    <mat-datepicker #picker (change)="onChangeEvent($event)"></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field appearance="fill">
+                    <mat-label>Edad</mat-label>
+                    <input matInput placeholder="" [(ngModel)]="mostrarEdad" (change)="edadCalculator()" name="mostrarEdad">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Lugar de Nacimiento</mat-label>
+                    <input matInput placeholder="" [(ngModel)] = "paciente.no_lugar_nacimiento" name="no_lugar_nacimiento">
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field appearance="fill">
+                    <mat-label>Dirección</mat-label>
+                    <input matInput placeholder="" [(ngModel)] = "paciente.no_direccion" name="no_direccion">
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Departamento</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let op of ubigeo" [value]="op.codigo_departamento">{{op.descripcion_departamento}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Provincia</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let op of ubigeo" [value]="op.codigo_provincia">{{op.descripcion_provincia}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Distrito</mat-label>
+                    <mat-select>
+                        <mat-option *ngFor="let op of ubigeo" [value]="op.codigo_distrito">{{op.descripcion_distrito}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <button mat-raised-button color="primary" class="btn" [disabled]= "!pacienteForm.form.valid">Guardar</button>
+        </form>        
+    </fieldset>
+    <div>
+        <app-acompanante></app-acompanante>
+    </div>
+</div>
+<div class="btn-container">
+    <button mat-raised-button color="primary" class="btn">Guardar</button>
+    <button mat-raised-button color="primary" (click)="btnCancelar()">Cancelar</button>
+</div>

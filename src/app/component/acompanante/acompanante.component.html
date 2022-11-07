@@ -1,0 +1,87 @@
+<fieldset style="margin: 10px;">
+    <legend>Datos del Paciente</legend>
+    <div class="example-container">
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Tipo Documento</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let op of tipoDocs" [value]="op.id_tipo_documento_identidad">{{op.descripcion_tipo_documento_identidad}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field hintLabel="Max 8 characters" appearance="fill">
+                <mat-label>Num. Documento</mat-label>
+                <input matInput #filter maxlength="8" placeholder="">
+                <mat-hint align="end">{{filter.value?.length || 0}}/8</mat-hint>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Nombres</mat-label>
+                <input matInput #filter placeholder="">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Apellido Paterno</mat-label>
+                <input matInput #filter placeholder="">
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Apellido Materno</mat-label>
+                <input matInput #filter placeholder="">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Sexo</mat-label>
+                <mat-select>
+                    <mat-option *ngFor="let op of sexos" [value]="op.id_sexo">{{op.descripcion_sexo}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Fecha Nacimiento</mat-label>
+                <input matInput [matDatepicker]="picker">
+                <mat-hint>MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>Edad</mat-label>
+                <input matInput placeholder="">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Parentesco</mat-label>
+                <input matInput placeholder="">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Telefono de contacto</mat-label>
+                <input matInput placeholder="">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="fill">
+                <mat-label>Dirección</mat-label>
+                <input matInput placeholder="">
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Departamento</mat-label>
+                <mat-select>
+                    <mat-option value="1">Lima</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Provincia</mat-label>
+                <mat-select>
+                    <mat-option value="1">Lima</mat-option>
+                </mat-select>
+            </mat-form-field>
+            <mat-form-field appearance="fill">
+                <mat-label>Distrito</mat-label>
+                <mat-select>
+                    <mat-option value="1">Lima</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+</fieldset>

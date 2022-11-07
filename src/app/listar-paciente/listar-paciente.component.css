@@ -1,0 +1,56 @@
+
+.btn-container {
+    display: table-cell;
+    width: 490px;
+}
+
+.btn{
+    margin: 10px;
+}
+
+a{
+    margin: 650px;
+    color: green;
+    text-decoration: none;
+}
+
+a:hover{
+    border-bottom: 1px solid;
+}
+
+table {
+    width: 100%;
+}
+
+th{
+    width: 12.5%;
+    text-align: center;
+}
+td{
+    text-align: left;
+}
+
+fieldset {
+    border-color: blue;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+}
+
+.header-table {
+    background-color: rgb(236, 239, 250);
+    color: blue;
+}
+
+.header-div {
+    background-color: rgb(236, 239, 250);
+    padding: 10px;
+    font-size: large;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.example-container .mat-form-field+.mat-form-field {
+    margin-left: 20px;
+    width: 250px;
+}
